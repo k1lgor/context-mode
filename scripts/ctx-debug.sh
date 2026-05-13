@@ -184,8 +184,9 @@ detect_os
 
 # ─── Windows path bridge ────────────────────────────────────────────────────
 # Git Bash resolves /tmp to C:\Users\...\AppData\Local\Temp, but native
-# Node.js resolves /tmp to D:\tmp.  Bridge via cygpath -w so Node.js finds
-# the files that mktemp created under the MSYS2 temp directory.
+# Node.js resolves /tmp to D:\tmp.  Bridge via cygpath -m so Node.js sees
+# Windows paths for the mktemp-created files, using forward slashes that are
+# accepted by Node.js and avoid backslash-escaping issues in shell contexts.
 if [ "$OS_TYPE" = "windows" ] && command -v cygpath &>/dev/null; then
   JSONL_FILE="$(cygpath -m "$JSONL_FILE" 2>/dev/null || echo "$JSONL_FILE")"
   EFFECTIVE_TMP="$(cygpath -m "$EFFECTIVE_TMP" 2>/dev/null || echo "$EFFECTIVE_TMP")"
