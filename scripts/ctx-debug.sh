@@ -630,7 +630,7 @@ section "10. Process Check"
 if command -v ps &>/dev/null; then
   CTX_PROCS="$(ps aux 2>/dev/null | grep '[c]ontext-mode' | grep -v -E 'context-mode-dashboard|esbuild|wrangler|workerd|grep' || true)"
   CTX_COUNT="$(printf '%s' "$CTX_PROCS" | grep -c . 2>/dev/null || :)"
-CTX_COUNT="${CTX_COUNT:-0}"
+  CTX_COUNT="${CTX_COUNT:-0}"
 else
   CTX_PROCS=""
   CTX_COUNT="0"
