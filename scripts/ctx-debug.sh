@@ -190,6 +190,8 @@ if [ "$OS_TYPE" = "windows" ] && command -v cygpath &>/dev/null; then
   JSONL_FILE="$(cygpath -m "$JSONL_FILE" 2>/dev/null || echo "$JSONL_FILE")"
   EFFECTIVE_TMP="$(cygpath -m "$EFFECTIVE_TMP" 2>/dev/null || echo "$EFFECTIVE_TMP")"
   JSON_FILE="$(cygpath -m "$JSON_FILE" 2>/dev/null || echo "$JSON_FILE")"
+  PLUGIN_ROOT="$(cygpath -m "$PLUGIN_ROOT" 2>/dev/null || echo "$PLUGIN_ROOT")"
+  export NODE_PATH="$PLUGIN_ROOT/node_modules:${NODE_PATH:-}"
 fi
 
 NOW="$(date -u '+%Y-%m-%dT%H:%M:%SZ' 2>/dev/null || date '+%Y-%m-%d %H:%M:%S')"
